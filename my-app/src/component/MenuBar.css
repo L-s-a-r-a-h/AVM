@@ -1,0 +1,33 @@
+.head{
+  overflow-x: hidden;
+background-color: bisque;
+}
+.head h2{
+    color: #313030;
+    padding-left: 160px;
+}
+
+.menubar{
+    margin-top: auto;
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    
+    left: 0;
+    background-color: #e0d9d9;
+    overflow-x: hidden;
+    
+}
+
+.menubar h4 {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #201f1f;
+    display: block;
+  }
+  
+  .menubar h4:hover {
+    color: #504f4f;
+  }
