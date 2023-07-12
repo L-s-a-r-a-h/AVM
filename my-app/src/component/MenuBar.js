@@ -8,7 +8,7 @@ import "./MenuBar.css";
 
 import Home from './Home'
 import Start from './Start'
-import Settings from './Settings'
+
 function MenuBar() {
     return (
         <Router>
@@ -25,7 +25,6 @@ function MenuBar() {
                       <div class = "menubar">
                         <Navbar.Brand href="/Home"><h4 className="home">Home</h4></Navbar.Brand>
                         <Nav.Link as={Link} to={"/start"}><h4 className="linkText">Start </h4></Nav.Link>
-                        <Nav.Link as={Link} to={"/settings"}><h4 className="linkText">Settings </h4></Nav.Link>
 
                         <h4>log out</h4>
                         </div>
@@ -38,7 +37,6 @@ function MenuBar() {
                 <Route exact path='/' element ={<Home/>}/>
                 <Route path='Home' element={<Home/>}> </Route>
                 <Route path='Start' element={<Start/>}> </Route>
-                <Route path='Settings' element={<Settings/>}> </Route>
             </Routes>
 
         </Router>
