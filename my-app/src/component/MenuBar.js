@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./MenuBar.css";
 
 import Home from './Home'
+import Start from './Start'
+import Settings from './Settings'
 function MenuBar() {
     return (
         <Router>
@@ -35,7 +37,8 @@ function MenuBar() {
             <Routes>
                 <Route exact path='/' element ={<Home/>}/>
                 <Route path='Home' element={<Home/>}> </Route>
-
+                <Route path='Start' element={<Start/>}> </Route>
+                <Route path='Settings' element={<Settings/>}> </Route>
             </Routes>
 
         </Router>
