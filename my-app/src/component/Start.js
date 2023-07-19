@@ -1,75 +1,68 @@
 import React, { Component } from 'react';
-import  { useState } from "react";
-class Start extends Component {
-    
-    state = {
-        selectedFile: null
-    };
+import { useState } from "react";
+import fileProcess from "../test/fileProcess"
+import Papa from "papaparse";
 
-    // On file select (from the pop up)
-    onFileChange = event => {
+const allowedExtensions = ["csv"];
+const Start = () => {
 
-        // Update the state
-        this.setState({ selectedFile: event.target.files[0] });
 
-    };
+    const [data, setData] = useState([]);
+    const [tableRows, setTableRows] = useState([]);
 
-    // On file upload (click the upload button)
-    onFileUpload = () => {
+    // It state will contain the error when
+    // correct file extension is not used
+    const [error, setError] = useState("");
 
-        console.log(this.state.selectedFile);
+    // It will store the file uploaded by the user
+    const [file, setFile] = useState("");
+    const handleFileChange = (e) => {
+        setError("");
 
-        // Send formData object code here   
-        //--------------------------------- 
-        if (this.state.selectedFile.type == "text/csv"){
-           console.log("OK");
-        }else{
-            console.log("NO OK");
-        }
+        // Check if user has entered the file
+        if (e.target.files.length) {
+            const inputFile = e.target.files[0];
 
-    };
-
-    // content displayed after file upload is complete
-    fileData = () => {
-
-        if (this.state.selectedFile) {
-            if (this.state.selectedFile.type == "text/csv") {
-                return (<div>
-                    <h2>File Details:</h2>
-                    <p>File Name: {this.state.selectedFile.name}</p>
-
-                    <p>File Type: {this.state.selectedFile.type}</p>
-                </div>
-                )
-            } else {
-                return (
-                    <div>
-                        <br />
-                        <h4 class="errorText">incorrect file type!! </h4>
-                    </div>
-                );
-
+            // Check the file type, if incorrect show error message
+            const fileExtension = inputFile?.type.split("/")[1];
+            if (!allowedExtensions.includes(fileExtension)) {
+                setError("Incorrect file type! Please select CSV file!");
+                return;
             }
 
-        } 
+            // If input type is correct set the state
+            setFile(inputFile);
+        }
+    };
+    const handleSubmit = () => {
+
+        if (!file) return setError("Enter a valid file");
+            const reader = new FileReader();
+            //csv to  array
+            reader.onload = async ({ target }) => {
+                const csv = Papa.parse(target.result, { header: true });
+                const parsedData = csv?.data;
+            // process the file 
+                fileProcess(parsedData);}
+        reader.readAsText(file);
+
+  
+
     };
 
-    render() {
-
-        return (
-            <div class="body">
-                <h3> start page.  </h3>
-                <p>upload your vulnerabily report in csv file!!!</p>
-                <div>
-                    <input type="file" onChange={this.onFileChange} />
-                    <button onClick={this.onFileUpload}>
-                        Submit
-                    </button>
-                </div>
-                {this.fileData()}
+    return (
+        <div class="body">
+            <h3> start page.  </h3>
+            <p>upload your vulnerabily report in csv file!!!</p>
+            <div>
+                <input type="file"  onChange={handleFileChange}/>
+                <button onClick={handleSubmit}>
+                    Submit
+                </button>
             </div>
-        );
-    }
+        </div>
+    );
 }
+
 
 export default Start;
