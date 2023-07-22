@@ -2,13 +2,13 @@ import React from "react";
 
 import "./bodyStyles.css";
 
-const Home=()=> {
+const Settings=()=> {
     return (
         <div class = "body">
-        <h3> home page.  </h3>
-        <p>how to use this tool!</p>
+        <h3> settings page.  </h3>
+        <p></p>
         </div>
         );
     }
 
-    export default Home;
+    export default Settings;
