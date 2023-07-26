@@ -8,13 +8,59 @@ h3{
 }
 
 .output-panel {
-    background-color: lightgray;
+    background-color: #F1F0F0;
+    height: 10px 100%;
 }
 
 .cve-tbl-header {
     background-color: gray;
 }
 
-tr:hover {
+.cve-list-header {
+    background-color: lightgray;
+    font-weight: bold;
+}
+
+.cve-list-item {
+    background-color: #fcfcfc;
+}
+
+.cve-content {
+    display: none;
+}
+.cve:hover {
     background-color: darkgray;
 }
+
+ul {
+    padding-top: 25px;
+    padding-right: 20px;
+    padding-bottom: 25px;
+}
+
+li {
+    border-radius: 5px;
+    padding: 15px 15px;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 5px;
+}
+
+.col-1 {
+    flex-basis: 10%;
+}
+.col-2 {
+    flex-basis: 12%;
+}
+.col-3 {
+    flex-basis: 10%;
+}
+.col-4 {
+    flex-basis: 50%;
+}
+.col-5 {
+    flex-basis: 13%;
+}
+
+
+
