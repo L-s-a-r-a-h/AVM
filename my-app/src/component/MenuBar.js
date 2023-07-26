@@ -39,6 +39,8 @@ function MenuBar() {
                 <Route path='Home' element={<Home/>}> </Route>
                 <Route path='Start' element={<Start/>}> </Route>
                 <Route path='Form' element={<Form/>}> </Route>
+
+                
             </Routes>
 
         </Router>
