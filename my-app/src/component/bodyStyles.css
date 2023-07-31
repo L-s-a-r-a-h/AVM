@@ -7,6 +7,10 @@ h3{
     color: blue;
 }
 
+.error{
+    color: blueviolet;
+}
+
 .output-panel {
     background-color: #F1F0F0;
     height: 500px;
@@ -79,6 +83,7 @@ li {
     justify-content: left;
     margin-bottom: 5px;
 }
+
 
 
 

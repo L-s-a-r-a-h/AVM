@@ -8,7 +8,9 @@ import "./MenuBar.css";
 
 import Home from './Home'
 import Start from './Start'
+import Form from "./Form";
 import Output from './Output'
+
 
 function MenuBar() {
     return (
@@ -32,7 +34,9 @@ function MenuBar() {
                 <Route exact path='/' element ={<Home/>}/>
                 <Route path='Home' element={<Home/>}> </Route>
                 <Route path='Start' element={<Start/>}> </Route>
+                <Route path='Form' element={<Form/>}> </Route>
                 <Route path='Output' element={<Output/>}> </Route>
+
             </Routes>
 
         </Router>
