@@ -1,75 +1,88 @@
 import React, { Component } from 'react';
-import  { useState } from "react";
-class Start extends Component {
-    
-    state = {
-        selectedFile: null
-    };
+import { useState } from "react";
+import fileProcess from "../test/fileProcess"
+import Papa from "papaparse";
+import Form from './Form';
 
-    // On file select (from the pop up)
-    onFileChange = event => {
 
-        // Update the state
-        this.setState({ selectedFile: event.target.files[0] });
+const allowedExtensions = ["csv"];
+const Start = () => {
+    // const navigate = useNavigate();
+    const [data, setData] = useState('');
+    const [result, setResult] = useState(false);
+    // It state will contain the error when
+    // correct file extension is not used
+    const [error, setError] = useState("");
 
-    };
+    // It will store the file uploaded by the user
+    const [file, setFile] = useState("");
+    const handleFileChange = (e) => {
+        setError("");
+        // Check if user has entered the file
+        if (e.target.files.length) {
+            const inputFile = e.target.files[0];
 
-    // On file upload (click the upload button)
-    onFileUpload = () => {
-
-        console.log(this.state.selectedFile);
-
-        // Send formData object code here   
-        //--------------------------------- 
-        if (this.state.selectedFile.type == "text/csv"){
-           console.log("OK");
-        }else{
-            console.log("NO OK");
-        }
-
-    };
-
-    // content displayed after file upload is complete
-    fileData = () => {
-
-        if (this.state.selectedFile) {
-            if (this.state.selectedFile.type == "text/csv") {
-                return (<div>
-                    <h2>File Details:</h2>
-                    <p>File Name: {this.state.selectedFile.name}</p>
-
-                    <p>File Type: {this.state.selectedFile.type}</p>
-                </div>
-                )
+            // Check the file type, if incorrect show error message
+            const fileExtension = inputFile?.type.split("/")[1];
+            if (!allowedExtensions.includes(fileExtension)) {
+                setError("Incorrect file type! Please select CSV file!");
+                return;
             } else {
-                return (
-                    <div>
-                        <br />
-                        <h4 class="errorText">incorrect file type!! </h4>
-                    </div>
-                );
-
+                // If input type is correct set the state
+                setFile(inputFile);
             }
 
-        } 
+
+        }
+    };
+    const handleSubmit = () => {
+    
+        console.log("click submit");
+        if (!file) {
+            return setError("Select csv file");
+        }
+        const reader = new FileReader();
+        //csv to  array
+        reader.onload = async ({ target }) => {
+            const csv = Papa.parse(target.result, { header: true });
+            const parsedData = csv?.data;
+            // process the file 
+            let dat = fileProcess(parsedData);
+            if (!dat) {
+                return setError("csv file does not contail correct elements");
+            }
+            setData(dat);
+            setResult(true);
+        }
+        reader.readAsText(file);
+
+
+
+
     };
 
-    render() {
 
-        return (
-            <div class="body">
-                <h3> start page.  </h3>
-                <p>upload your vulnerabily report in csv file!!!</p>
-                <div>
-                    <input type="file" onChange={this.onFileChange} />
-                    <button onClick={this.onFileUpload}>
-                        Submit
-                    </button>
-                </div>
-                {this.fileData()}
+
+    return (
+        <div class="body">
+            <h3> start page.  </h3>
+            <p>upload your vulnerabily report in csv file!!!</p>
+
+            <div>
+                <p class="error">{error}</p>
+                <input type="file" onChange={handleFileChange} />
+                <button onClick={handleSubmit}>
+                    Submit
+                </button>
+
             </div>
-        );
-    }
+
+            <div class="results">
+                {result && <Form props={data} />}
+            </div>
+        </div>
+    );
 }
+
 
 export default Start;
