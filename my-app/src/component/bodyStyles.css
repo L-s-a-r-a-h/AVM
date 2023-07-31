@@ -1,11 +1,91 @@
 .body{
-    padding-left: 160px;
-}
+    padding-left: 185px;
+    padding-right: 25px;
+}   
 
 h3{
-
     color: blue;
 }
+
 .error{
     color: blueviolet;
 }
+
+.output-panel {
+    background-color: #F1F0F0;
+    height: 500px;
+    overflow-y: auto;
+}
+
+.cve-tbl-header {
+    background-color: gray;
+}
+
+.cve-list-header {
+    background-color: lightgray;
+    padding: 15px 15px;
+    font-weight: bold;
+}
+
+.cve-list-item {
+    background-color: #fcfcfc;
+    padding: 5px 5px;
+    cursor: pointer;
+}
+
+.cve-content-box {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0,1,0,1);
+}
+.cve-content-box.show {
+    height: auto;
+    max-height: 999px;
+    background-color: #fcfcfc;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: all 0.5s cubic-bezier(1,0,1,0);
+}
+.cve-content {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.cve-list-item:hover {
+    background-color: darkgray;
+}
+
+.col-1 {
+    flex-basis: 10%;
+}
+.col-2 {
+    flex-basis: 12%;
+}
+.col-3 {
+    flex-basis: 10%;
+}
+.col-4 {
+    flex-basis: 50%;
+}
+.col-5 {
+    flex-basis: 13%;
+}
+
+ul {
+    padding-top: 25px;
+    padding-right: 20px;
+    padding-bottom: 25px;
+}
+
+li {
+    border-radius: 5px;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 5px;
+}
+
+
+
+
+
+
