@@ -10,7 +10,8 @@ import Home from './Home'
 import Start from './Start'
 import Form from "./Form";
 import Output from './Output'
-
+import Login from "./Login";
+import RegistrationForm from "./RegistrationForm";
 
 function MenuBar() {
     return (
@@ -36,6 +37,9 @@ function MenuBar() {
                 <Route path='Start' element={<Start/>}> </Route>
                 <Route path='Form' element={<Form/>}> </Route>
                 <Route path='Output' element={<Output/>}> </Route>
+                <Route path='Login' element={<Login/>}> </Route>
+                <Route path='Register' element={<RegistrationForm/>}> </Route>
+
 
             </Routes>
 
