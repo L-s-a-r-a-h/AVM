@@ -4,7 +4,7 @@ import fileProcess from "../test/fileProcess"
 import Papa from "papaparse";
 import Form from './Form';
 import * as func from "../test/api";
-
+import MenuBar from './MenuBar';
 
 const allowedExtensions = ["csv"];
 const Start = () => {
@@ -71,6 +71,7 @@ const Start = () => {
 
 
     return (
+        <div> <MenuBar/>   
         <div class="body">
             <div class="upload">
                 <h3> start page.  </h3>
@@ -89,6 +90,7 @@ const Start = () => {
             {/* <div class="results">
                 {result && <Form props={data} />}
             </div> */}
+        </div>
         </div>
     );
 }

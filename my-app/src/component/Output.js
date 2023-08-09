@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-
+import MenuBar from "./MenuBar";
 function Output() {
     const test_cves = [
         {
@@ -58,6 +58,8 @@ function Output() {
 
 
     return (
+        <div> 
+            <MenuBar/>    
         <div class="body">
             <h3> Results </h3>
             <div class="output-panel"> 
@@ -110,6 +112,7 @@ function Output() {
                     })}
                 </ul>
             </div>
+        </div>
         </div>
     );
 

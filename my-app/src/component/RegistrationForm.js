@@ -46,7 +46,7 @@ const RegistrationForm = () => {
                 </div>
 
                 <div class="container signin">
-                    <p>Already have an account? <a href="/signin">Sign in</a>.</p>
+                    <p>Already have an account? <a href="/Login">Sign in</a>.</p>
                 </div>
             </form>
         </div>
