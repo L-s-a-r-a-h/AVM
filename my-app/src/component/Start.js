@@ -3,7 +3,7 @@ import { useState } from "react";
 import fileProcess from "../test/fileProcess"
 import Papa from "papaparse";
 import Form from './Form';
-import * as func from "../test/api";
+//import * as func from "../test/api";
 import MenuBar from './MenuBar';
 
 const allowedExtensions = ["csv"];
@@ -62,10 +62,6 @@ const Start = () => {
             setMessage("upload Success!");
         }
         reader.readAsText(file);
-
-
-
-
     };
 
 

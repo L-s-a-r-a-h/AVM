@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import * as funct from "../test/priority";
+//import * as funct from "../test/priority";
 import "./bodyStyles.css";
 
 const Form = (args) => {
@@ -19,7 +19,7 @@ let arr =  args.props;
   const onSubmit = (data) => {
     setResult(JSON.stringify(data));
     //sort the cve based on the critical systems
-    funct.assessPriority({riskList:arr, score:data});
+    //funct.assessPriority({riskList:arr, score:data});
   }
 
 
