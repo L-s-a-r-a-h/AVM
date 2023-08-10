@@ -1,14 +1,28 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-
+//import * as funct from "../test/priority";
 import "./bodyStyles.css";
 
-const Form = () => {
+const Form = (args) => {
+  //props is the filtered vulnerability results
+console.log(args.props);
+let arr =  args.props;
   const { register, handleSubmit } = useForm();
+  // 'result' is the submitted data
   const [result, setResult] = useState("");
-let appName = "piopiop";
-  const onSubmit = (data) => setResult(JSON.stringify(data));
+
+  //data for testing, replace later with the list of affected appplications 
+  let appName = [['google', 'chrome'], ['fedoraproject', 'fedora'], ['asdasd', 'erere']];
+
+  // 'data' is from the form
+  const onSubmit = (data) => {
+    setResult(JSON.stringify(data));
+    //sort the cve based on the critical systems
+    //funct.assessPriority({riskList:arr, score:data});
+  }
+
+
 
   return (
     <div >
@@ -22,15 +36,20 @@ let appName = "piopiop";
             <th><label>Score:</label></th>
           </thead>
           <tbody>
-            <tr><td  >{appName}</td><td><select {...register("score")} placeholder="score" >
-            
-              <option value="5">5</option>
-              <option value="4">4</option>
-              <option value="3">3</option>
-              <option value="2">2</option>
-              <option value="1">1</option>
-            </select></td></tr>
-            <tr></tr>
+            {
+              appName.map((val, i) =>
+                <tr> <td>{val[1]}</td>
+                  <td><select {...register(val[1])} placeholder="score" >
+
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                  </select></td>
+                </tr>
+              )
+            }
           </tbody>
         </table>
         <p><label>Other Systems please specify:</label><input {...register("other")} /></p>
