@@ -1,9 +1,15 @@
 import React from "react";
 
+import "./bodyStyles.css";
+import MenuBar from "./MenuBar";
 const Home=()=> {
     return (
-        <div>
-        <h3> welcome </h3>
+        <div> <MenuBar/>    
+        <div class = "body">
+       
+        <h3> home page.  </h3>
+        <p>how to use this tool!</p>
+        </div>
         </div>
         );
     }
