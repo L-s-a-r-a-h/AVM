@@ -46,7 +46,7 @@ function checkFile(data){
         console.log(error);
     }
 
- console.log(newData);
+    console.log(newData);
 
-    return true;
+    return newData;
 }
