@@ -31,7 +31,7 @@ function MenuBar() {
                     <div class = "menubar">
                         <Navbar.Brand href="/Home"><h4 className="home">Home</h4></Navbar.Brand>
                         <Nav.Link as={Link} to={"/start"}><h4 className="linkText"> Start </h4></Nav.Link>
-
+                        <Nav.Link as={Link} to={"/Form"}><h4 className="form"> Form </h4></Nav.Link>
                         <Nav.Link as={Link} to={"/Output"}><h4 className="testOutput"> Results </h4></Nav.Link>
                         <h4>log out</h4>
 
