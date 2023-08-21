@@ -69,7 +69,8 @@ const Start = () => {
     };
 
     return (
-        <div> <MenuBar/>   
+        <div> 
+            <MenuBar/>   
         <div class="body">
             <div class="upload">
                 <h3> start page.  </h3>
