@@ -3,13 +3,15 @@ import { useState } from "react";
 import fileProcess from "../test/fileProcess"
 import Papa from "papaparse";
 import Form from './Form';
+import {NavLink, useNavigate } from 'react-router-dom';
+
 //import * as func from "../test/api";
 import MenuBar from './MenuBar';
 
 const allowedExtensions = ["csv"];
 const Start = () => {
-    // const navigate = useNavigate();
-    const [data, setData] = useState('');
+    const navigate = useNavigate();
+    const [data, setData] = useState([]);
     const [result, setResult] = useState(false);
     // It state will contain the error when
     // correct file extension is not used
@@ -32,10 +34,9 @@ const Start = () => {
                 // If input type is correct set the state
                 setFile(inputFile);
             }
-
-
         }
     };
+
     const handleSubmit = () => {
 
         console.log("click submit");
@@ -61,10 +62,11 @@ const Start = () => {
             setResult(true);
             setMessage("upload Success!");
         }
+        
+        //navigate("/Output", state=)
+        
         reader.readAsText(file);
     };
-
-
 
     return (
         <div> 
@@ -79,6 +81,9 @@ const Start = () => {
                     <button onClick={handleSubmit}>
                         Submit
                     </button>
+                    <NavLink to="/Output" state={data}>
+                    <button> Results </button>
+                    </NavLink>
                 </div>
             </div>
             <div >
