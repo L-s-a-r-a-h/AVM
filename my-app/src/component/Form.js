@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 //import * as funct from "../test/priority";
 import "./bodyStyles.css";
+import MenuBar from './MenuBar';
 
 const Form = (args) => {
   //props is the filtered vulnerability results
@@ -25,12 +26,15 @@ let arr =  args.props;
 
 
   return (
-    <div >
-      <h3> Form.  </h3>
-      <p>Next to each business system please rate on a scale of 1 to 5 the sensitivity and criticality of each system (1 being the lowest, 5 being the highest) Consider factors such as data confidentiality, system availability, and potential impact on the business if the system is compromised.
-      </p>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <table>
+    <div > 
+      <MenuBar />
+      <div class="body">
+        <h3> Form </h3>
+        <div className="output-panel">
+          <p>Next to each business system please rate on a scale of 1 to 5 the sensitivity and criticality of each system (1 being the lowest, 5 being the highest) Consider factors such as data confidentiality, system availability, and potential impact on the business if the system is compromised.
+          </p>
+          <form onSubmit={handleSubmit(onSubmit)}>
+          <table>
           <thead>
             <th><label>Business Systems:</label></th>
             <th><label>Score:</label></th>
@@ -52,7 +56,7 @@ let arr =  args.props;
             }
           </tbody>
         </table>
-        <p><label>Other Systems please specify:</label><input {...register("other")} /></p>
+        <p><label>Other Systems please specify:   </label><input {...register("other")} /></p>
         <label>Select the Operating System installed on Endpoint Devices:</label><select {...register("userOS")}>
           <option value="Windows">Windows</option>
           <option value="MacOS">MacOS</option>
@@ -62,6 +66,8 @@ let arr =  args.props;
         <p>{result}</p>
         <input type="submit" />
       </form>
+      </div>
+      </div>
     </div>
   );
 }

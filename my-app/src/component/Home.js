@@ -7,8 +7,8 @@ const Home=()=> {
         <div> <MenuBar/>    
         <div class = "body">
        
-        <h3> home page.  </h3>
-        <p>how to use this tool!</p>
+        <h3> Home page.  </h3>
+        <p>How to use this tool!</p>
         </div>
         </div>
         );
