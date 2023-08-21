@@ -1,7 +1,11 @@
 .body{
     padding-left: 185px;
     padding-right: 25px;
-}   
+}
+
+.form-body {
+    padding-left: 185px
+}
 
 h3{
     color: blue;
