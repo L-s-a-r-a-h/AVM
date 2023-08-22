@@ -73,21 +73,21 @@ export default function Login() {
             <div class="container">
             <div class="form-box">
                 <h1 id="title">Sign Up</h1>
-                <form>
+                <form action="LoginDB.php" method="post">
                     <div class="input-group">
                         <div class="input-field" id="nameField">
                             <i class="fa-solid fa-user"></i>
-                            <input type="text" placeholder="Name"/>
+                            <input type="text" placeholder="Name" name="fullName" required />
                         </div>
 
                         <div class="input-field">
                             <i class="fa-solid fa-envelope"></i>
-                            <input type="email" placeholder="Email"/>
+                            <input type="email" placeholder="Email" name="email" required />
                         </div>
 
                         <div class="input-field">
                             <i class="fa-solid fa-lock"></i>
-                            <input type="password" placeholder="Password"/>
+                            <input type="password" placeholder="Password" name="password" required />
                         </div>
                         <p>Forgot password? <a href="#"> Click Here</a></p>
                     </div>
