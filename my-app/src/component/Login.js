@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
-import "./Login.css";
+import "./styles/Login.css";
 
 export default function Login() {
    
-
-
     function signinBtn(){
         let signupBtn = document.getElementById("signupBtn");
         let signinBtn = document.getElementById("signinBtn");
