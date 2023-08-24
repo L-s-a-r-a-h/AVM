@@ -10,6 +10,11 @@ continue = e => {
   this.props.nextStep();
 };
 
+back = e => {
+  e.preventDefault();
+  this.props.prevStep();
+
+}
 
     addList() {
         var input = document.getElementById('input').value;

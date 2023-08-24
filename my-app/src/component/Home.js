@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./bodyStyles.css";
+import "./styles/bodyStyles.css";
 import MenuBar from "./MenuBar";
 const Home=()=> {
     return (
