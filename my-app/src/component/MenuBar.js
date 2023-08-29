@@ -7,13 +7,12 @@ import { useEffect, useState } from "react";
 
 import {useNavigate } from 'react-router-dom';
 
-import "./MenuBar.css";
+import "./styles/MenuBar.css";
 function MenuBar() {
     const navigate = useNavigate();
 
     //log out -----------------need to complete
     const handleLogout = () => {
-
         localStorage.clear();
         console.log("Log out");
         navigate("/Login");
@@ -33,7 +32,7 @@ function MenuBar() {
                         <Nav.Link as={Link} to={"/start"}><h4 className="linkText"> Start </h4></Nav.Link>
                         <Nav.Link as={Link} to={"/Form"}><h4 className="form"> Form </h4></Nav.Link>
                         <Nav.Link as={Link} to={"/Output"}><h4 className="testOutput"> Results </h4></Nav.Link>
-                        <h4>Log out</h4>
+                        <h4 onClick={handleLogout}>Log out</h4>
 
                     </div>
                     </Container>
