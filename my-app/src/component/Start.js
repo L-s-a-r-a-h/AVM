@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { useState } from "react";
 import fileProcess from "../test/fileProcess"
 import Papa from "papaparse";
-import Form from './Form';
+import Form from './FormComponents/Form';
 import {NavLink, useNavigate } from 'react-router-dom';
 
 //import * as func from "../test/api";
@@ -86,12 +86,10 @@ const Start = () => {
                     </NavLink>
                 </div>
             </div>
-            <div >
-            <p class="message">{message}</p>
-                </div>
-            {/* <div class="results">
+           
+            <div class="results">
                 {result && <Form props={data} />}
-            </div> */}
+            </div>
         </div>
         </div>
     );
