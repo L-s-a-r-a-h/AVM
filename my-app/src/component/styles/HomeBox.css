@@ -25,3 +25,7 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
 }
+
+.main-content {
+    margin-left: 150px; /* This should be the width of your menubar */
+}
