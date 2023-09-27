@@ -1,6 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
 .body{
     padding-left: 185px;
     padding-right: 25px;
+    background: #f0f0f0; /* Slightly lighter grey */
+}
+
+body, html {
+    background: #f0f0f0; /* Slightly lighter grey */
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 .form-body {
@@ -93,9 +103,3 @@ li {
     justify-content: left;
     margin-bottom: 5px;
 }
-
-
-
-
-
-
