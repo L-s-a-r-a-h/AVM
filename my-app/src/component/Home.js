@@ -7,12 +7,10 @@ const Home = () => {
     return (
         <div>
             <MenuBar />
-            <div className="body">
-                <div className="box">
-                    <Link to="/start" className="box-content">Upload Vulnerability Report</Link>
-                </div>
-                <div className="box">
-                    <Link to="/Output" className="box-content">View Previous Results</Link>
+            <div className="body main-content">
+                <div className="home-boxes">
+                    <Link to="/start" className="home-box">Upload Vulnerability Report</Link>
+                    <Link to="/Output" className="home-box">View Previous Results</Link>
                 </div>
             </div>
         </div>
