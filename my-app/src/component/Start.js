@@ -1,102 +1,82 @@
-import React, { Component } from 'react';
-import { useState } from "react";
-import fileProcess from "../test/fileProcess"
-import Papa from "papaparse";
+import React, { useState } from 'react';
+import Papa from 'papaparse';
 import Form from './FormComponents/Form';
-import {NavLink, useNavigate } from 'react-router-dom';
-
-//import * as func from "../test/api";
+import fileProcess from "../test/fileProcess"
+import { NavLink, useNavigate } from 'react-router-dom';
+import './styles/Start.css';
+import { useDropzone } from 'react-dropzone';
 import MenuBar from './MenuBar';
 
-const allowedExtensions = ["csv"];
+const allowedExtensions = ['csv'];
+
 const Start = () => {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [result, setResult] = useState(false);
-    // It state will contain the error when
-    // correct file extension is not used
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState('');
+    const [uploadedFileName, setUploadedFileName] = useState('');
 
-    // It will store the file uploaded by the user
-    const [file, setFile] = useState("");
-    const handleFileChange = (e) => {
-        setMessage("");
-        // Check if user has entered the file
-        if (e.target.files.length) {
-            const inputFile = e.target.files[0];
+    const handleFileChange = (acceptedFiles) => {
+        const file = acceptedFiles[0];
+        setUploadedFileName(file.name);
 
-            // Check the file type, if incorrect show error message
-            const fileExtension = inputFile?.type.split("/")[1];
-            if (!allowedExtensions.includes(fileExtension)) {
-                setMessage("Incorrect file type! Please select CSV file!");
-                return;
-            } else {
-                // If input type is correct set the state
-                setFile(inputFile);
-            }
-        }
-    };
-
-    const handleSubmit = () => {
-
-        console.log("click submit");
-        if (!file) {
-            return setMessage("Select csv file");
-        }
         const reader = new FileReader();
-        //csv to  array
-
         reader.onload = async ({ target }) => {
-
             const csv = Papa.parse(target.result, { header: true });
-
-
             const parsedData = csv?.data;
 
-            // process the file 
             let riskArr = fileProcess(parsedData);
             if (!riskArr) {
-                return setMessage("csv file does not contain correct elements");
+                return setMessage('CSV file does not contain correct elements');
             }
+
             setData(riskArr);
             setResult(true);
-            setMessage("upload Success!");
-        }
-        
-        //navigate("/Output", state=)
-        
+            setMessage('Upload success!');
+        };
+
         reader.readAsText(file);
     };
 
-    return (
-        <div> 
-            <MenuBar/>   
-        <div class="body">
-            <div class="upload">
-                <h3> start page.  </h3>
-                <p>upload your vulnerabily report in csv file!!!</p>
+    const { getRootProps, getInputProps } = useDropzone({
+        onDrop: handleFileChange,
+        accept: '.csv',
+        maxFiles: 1,
+    });
 
-                <div>
-                    <input type="file" onChange={handleFileChange} />
-                    <button onClick={handleSubmit}>
-                        Submit
-                    </button>
-                    <NavLink to="/Output" state={data}>
-                    <button> Results </button>
-                    </NavLink>
-                    <NavLink to="/OutputHosts" state={data}>
-                    <button> OutputHostsTest </button>
-                    </NavLink>
+    const handleSubmit = () => {
+        if (!uploadedFileName) {
+            return setMessage('Select a CSV file');
+        }
+
+        // Handle form submission here if needed
+    };
+
+    return (
+        <div>
+            <MenuBar />
+            <div className="body">
+                <div className="upload">
+                    <h3>Upload page</h3>
+                    <p>Upload your vulnerability report in a CSV file!!!</p>
+                    <div className="dropzone-container">
+                        <div {...getRootProps()} className="dropzone">
+                            <input {...getInputProps()} />
+                            {uploadedFileName ? (
+                                <p>Uploaded file: {uploadedFileName}</p>
+                            ) : (
+                                <p>Drag & drop a CSV file here, or click to select one</p>
+                            )}
+                        </div>
+                    </div>
+                    
+                </div>
+                <div className="results">
+                    {result && <Form props={data} />}
                 </div>
             </div>
-           
-            <div class="results">
-                {result && <Form props={data} />}
-            </div>
-        </div>
         </div>
     );
-}
-
+};
 
 export default Start;

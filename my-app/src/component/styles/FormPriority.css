@@ -1,0 +1,79 @@
+/* FormPriority.css */
+
+/* Style for the container */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Style for the heading */
+  .form-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Style for the form instructions */
+  .form-instructions {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #666;
+  }
+  
+  /* Style for each system priority section */
+  .system-priority {
+    margin-bottom: 15px;
+  }
+  
+  /* Style for the label */
+  .system-label {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #333;
+  }
+  
+  /* Style for the select input */
+  .system-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  
+  /* Style for the buttons */
+  .button-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #2E2E2E;
+  }
+  
+  /* Style for the back button */
+  .back-button {
+    background-color: #ccc;
+    color: #333;
+  }
+  
+  .back-button:hover {
+    background-color: #999;
+  }
+  

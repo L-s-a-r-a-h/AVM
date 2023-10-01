@@ -1,0 +1,42 @@
+.container{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+.btn-field{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.btn-field button{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 48%;
+    background: #2E2E2E;
+    color: #fff;
+    height: 40px;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+.results{
+    margin: 50px;
+}
+
+.dropzone-container {
+    border: 2px dashed #cccccc; /* Define the border style */
+    padding: 20px; /* Add some padding for spacing */
+    text-align: center; /* Center the content */
+}
+
+.dropzone {
+    /* Styles for the dropzone area */
+    border: none; /* Remove the default border */
+    background-color: #f9f9f9; /* Background color for the dropzone */
+    padding: 20px; /* Add padding inside the dropzone */
+    cursor: pointer; /* Change cursor on hover to indicate it's clickable */
+}
