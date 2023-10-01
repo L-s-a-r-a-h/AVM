@@ -84,6 +84,9 @@ const Start = () => {
                     <NavLink to="/Output" state={data}>
                     <button> Results </button>
                     </NavLink>
+                    <NavLink to="/OutputHosts" state={data}>
+                    <button> OutputHostsTest </button>
+                    </NavLink>
                 </div>
             </div>
            

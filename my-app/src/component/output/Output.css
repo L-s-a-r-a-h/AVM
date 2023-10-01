@@ -22,6 +22,65 @@
 .host-col-2-1 {
     flex-basis: 70%;
 }
+.host-col-2-2 {
+    flex-basis: 20%;
+}
+.host-col-3 {
+    flex-basis: 15%;
+    display: flex;
+    justify-content: right;
+}
+
+.cve-list-header {
+    background-color: lightgray;
+    padding: 15px 15px;
+    font-weight: bold;
+}
+
+.cve-list-item {
+    background-color: #fcfcfc;
+    padding: 5px 5px;
+    cursor: pointer;
+}
+
+.cve-content-box {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0,1,0,1);
+}
+.cve-content-box.show {
+    height: auto;
+    max-height: 999px;
+    background-color: #fcfcfc;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: all 0.5s cubic-bezier(1,0,1,0);
+}
+.cve-content {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.cve-list-item:hover {
+    background-color: darkgray;
+}
+
+.cve-col-1 {
+    flex-basis: 10%;
+}
+.cve-col-2 {
+    flex-basis: 12%;
+}
+.cve-col-3 {
+    flex-basis: 10%;
+}
+.cve-col-4 {
+    flex-basis: 50%;
+}
+.cve-col-5 {
+    flex-basis: 13%;
+}
 
 ul {
     padding-top: 25px;

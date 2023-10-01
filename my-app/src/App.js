@@ -8,6 +8,7 @@ import Start from './component/Start';
 import Form from './component/FormComponents/Form';
 import Output from './component/Output';
 import OutputHosts from './component/output/OutputHosts';
+import OutputCVEList from './component/output/OutputCVEList';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
                 <Route path='Form' element={<Form/>}> </Route>
                 <Route path='Output' element={<Output/>}> </Route>
                 <Route path='OutputHosts' element={<OutputHosts/>}></Route>
+                  <Route path='OutputCVEList' element={<OutputCVEList/>}></Route>
     </Routes>
   );
 }
