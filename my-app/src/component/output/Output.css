@@ -1,0 +1,36 @@
+.host-list-header {
+    background-color: lightgray;
+    padding: 15px 15px;
+    font-weight: bold;
+}
+.host-list-item {
+    background-color: #fcfcfc;
+    padding: 12px 12px;
+    cursor: pointer;
+}
+.host-list-item:hover {
+    background-color: darkgray;
+}
+
+.host-col-1 {
+    flex-basis: 15%;
+}
+.host-col-2 {
+    flex-basis: 70%;
+    display: flex;
+}
+.host-col-2-1 {
+    flex-basis: 70%;
+}
+
+ul {
+    padding-top: 25px;
+    padding-right: 20px;
+    padding-bottom: 25px;
+}
+li {
+    border-radius: 5px;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 5px;
+}
