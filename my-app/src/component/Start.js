@@ -69,7 +69,9 @@ const Start = () => {
                             )}
                         </div>
                     </div>
-                    
+                    <NavLink to="/OutputHosts" state={data}>
+                        <button disabled={!uploadedFileName}> Results </button>
+                    </NavLink>
                 </div>
                 <div className="results">
                     {result && <Form props={data} />}

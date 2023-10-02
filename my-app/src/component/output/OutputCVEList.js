@@ -45,7 +45,7 @@ function OutputCVEList() {
                                         <div class="cve-col-2"> {CVEItem.cve_id} </div>
                                         <div class="cve-col-3"> {CVEItem.severity === "Critical" ? "CRITICAL" : CVEItem.severity} </div>
                                         <div class="cve-col-4"> {CVEItem.name} </div>
-                                        <div class="cve-col-5"> ??? </div>
+                                        <div class="cve-col-5"> {CVEItem.Priority_Score} </div>
                                     </li>
                                     <div class={
                                         selected === i ? 'cve-content-box show' : 'cve-content-box'
