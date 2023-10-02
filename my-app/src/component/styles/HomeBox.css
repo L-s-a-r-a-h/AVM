@@ -1,6 +1,6 @@
 .home-boxes {
     display: flex;
-    height: 100vh; /* Cover the full viewport height */
+    height: 90.8vh; /* Cover the full viewport height */
     align-items: stretch; /* Stretch the boxes to cover the full height */
     justify-content: center;
 }
@@ -10,8 +10,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 112, 186, 0.7); /* Semi-transparent based on your color */
-    color: #ffffff;
+    background-color: rgba(114, 188, 238, 0.7); /* Semi-transparent based on your color */
+    color: #000000;
     font-size: 18px;
     text-align: center;
     border-radius: 10px;
@@ -21,7 +21,7 @@
 }
 
 .home-box:hover {
-    background-color: rgba(0, 112, 186, 0.9); /* Slightly less transparent on hover */
+    background-color: rgba(119, 191, 238, 0.9); /* Slightly less transparent on hover */
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
 }
@@ -29,3 +29,4 @@
 .main-content {
     margin-left: 150px; /* This should be the width of your menubar */
 }
+
