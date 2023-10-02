@@ -58,7 +58,7 @@ const Start = () => {
             <div className="body">
                 <div className="upload">
                     <h3>Upload page</h3>
-                    <p>Upload your vulnerability report in a CSV file!!!</p>
+                    
                     <div className="dropzone-container">
                         <div {...getRootProps()} className="dropzone">
                             <input {...getInputProps()} />
