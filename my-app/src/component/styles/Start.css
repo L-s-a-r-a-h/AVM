@@ -27,8 +27,9 @@
     margin-right: 30px;
 }
 .results{
-    margin: 50px;
+    align-items: center;
 }
+
 
 .dropzone-container {
     border: 2px dashed #cccccc; 
