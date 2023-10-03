@@ -31,15 +31,15 @@
 }
 
 .dropzone-container {
-    border: 2px dashed #cccccc; /* Define the border style */
-    padding: 20px; /* Add some padding for spacing */
-    text-align: center; /* Center the content */
+    border: 2px dashed #cccccc; 
+    padding: 20px; 
+    text-align: center; 
 }
 
 .dropzone {
     /* Styles for the dropzone area */
-    border: none; /* Remove the default border */
-    background-color: #f9f9f9; /* Background color for the dropzone */
-    padding: 20px; /* Add padding inside the dropzone */
-    cursor: pointer; /* Change cursor on hover to indicate it's clickable */
+    border: none; 
+    background-color: #f9f9f9; 
+    padding: 20px; 
+    cursor: pointer; 
 }
