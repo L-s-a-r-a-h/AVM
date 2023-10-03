@@ -14,7 +14,7 @@
     display: flex;
     justify-content: space-between;
     flex-basis: 48%;
-    background: #0070ba;
+    background: #2E2E2E;
     color: #fff;
     height: 40px;
     border-radius: 20px;
@@ -22,7 +22,10 @@
     outline: 0;
     cursor: pointer;
 }
-
+.body{
+    margin-left: 170px;
+    margin-right: 30px;
+}
 .results{
     margin: 50px;
 }

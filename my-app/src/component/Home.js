@@ -1,17 +1,29 @@
 import React from "react";
-
-import "./styles/bodyStyles.css";
+import { Link } from "react-router-dom";
+import "./styles/HomeBox.css";
 import MenuBar from "./MenuBar";
-const Home=()=> {
-    return (
-        <div> <MenuBar/>    
-        <div class = "body">
-       
-        <h3> Home page.  </h3>
-        <p>How to use this tool!</p>
-        </div>
-        </div>
-        );
-    }
+import { BsFiletypeCsv } from "react-icons/bs";
+import { AiFillFolderOpen } from "react-icons/ai";
 
-    export default Home;
+
+const Home = () => {
+    return (
+        <div>
+            <MenuBar />
+            <div className="main-content">
+                <div className="home-boxes">
+                    <Link to="/start" className="home-box">
+                        <BsFiletypeCsv/>
+                        <div className="box-content">Upload Vulnerability Report</div>
+                    </Link>
+                    <Link to="/Output" className="home-box">
+                        <AiFillFolderOpen/>
+                        <div className="box-content">View Previous Results</div>
+                    </Link>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default Home;

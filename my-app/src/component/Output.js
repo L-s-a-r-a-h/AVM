@@ -10,21 +10,13 @@ function Output() {
 
     const [CVEItems, setItems] = useState([]);
     const [selected, setSelected] = useState(null);
-    
-    /*
-    function addCVE(priorty, cve_id, severity, name, ip) {
-        setItems([
-            ...CVEItems,
-            {
-                priorty: priorty,
-                cve_id: cve_id,
-                serverity: severity,
-                name: name,
-                ip: ip
-            }
-            ]   
-        )
-    }//*/
+
+    const Risks = new Map([
+        ["Critical", 4],
+        ["High", 3],
+        ["Medium", 2],
+        ["Low", 1]
+    ]);
 
     // Process Input CVE Data
     useEffect(() => {
@@ -33,6 +25,7 @@ function Output() {
             cve_list.push({
                 cve_id: data.CVE,
                 severity: data.Risk,
+                severity_num: Risks.get(data.Risk),
                 name: data.Name,
                 ip: data.Host,
                 Criticality_Score: parseFloat(data.CVSS),
@@ -40,8 +33,9 @@ function Output() {
             })
         }
         cve_list.sort((a,b) => {
-            return  b.Criticality_Score - a.Criticality_Score;
+            return  b.severity_num - a.severity_num || b.Criticality_Score - a.Criticality_Score;
         })
+        console.log(cve_list)
         setItems(cve_list);
     }, []);
 

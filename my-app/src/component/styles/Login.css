@@ -29,7 +29,7 @@ body {
 .form-box h1{
     font-size: 30px;
     margin-bottom: 60px;
-    color: #0070ba;
+    color: #2E2E2E;
     position: relative;
 }
 
@@ -38,7 +38,7 @@ body {
     width: 30px;
     height: 4px;
     border-radius: 3px;
-    background: #0070ba;
+    background: #2E2E2E;
     position: absolute;
     bottom: -12px;
     left: 50%;
@@ -73,7 +73,7 @@ form p{
 }
 form p a{
     text-decoration: none;
-    color: #0070ba;
+    color: #2E2E2E;
 }
 .btn-field{
     width: 100%;
@@ -82,7 +82,7 @@ form p a{
 }
 .btn-field button{
     flex-basis: 48%;
-    background: #0070ba;
+    background: #2E2E2E;
     color: #fff;
     height: 40px;
     border-radius: 20px;
@@ -109,7 +109,7 @@ form p a{
 }
 .subbtn-field button{
     flex-basis: 48%;
-    background: #0070ba;
+    background: #2E2E2E;
     color: #fff;
     height: 40px;
     border-radius: 20px;

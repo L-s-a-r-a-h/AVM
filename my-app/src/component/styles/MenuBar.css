@@ -1,6 +1,6 @@
 .head {
   overflow-x: hidden;
-  background: linear-gradient(to right, #3498db, #5da8e2); 
+  background: #2E2E2E; /* Dark grey */
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2); 
   padding: 10px 0; 
 }
@@ -17,29 +17,31 @@
 .menubar {
   margin-top: auto;
   height: 100%;
-  width: 160px;
+  width: 150px;
   position: fixed;
   z-index: 1;
   left: 0;
-  background-color: #3498db; 
+  background-color: #2E2E2E; /* Dark grey */
   overflow-x: hidden;
+  background: linear-gradient(to right, #2a2a2a, #3a3a3a); /* Darker gradient background */
+  padding: 10px 0;
 }
 
 .menubar h4 {
-  padding: 10px 15px; 
+  padding: 15px 20px;
   text-decoration: none;
   font-size: 25px;
-  color: #ffffff; 
-  font-weight: bold; 
-  display: block;
-  transition: all 0.3s ease; 
-  transition: color 0.3s ease; 
+  color: #ffffff;
+  font-weight: bold;
+  display: flex; /* Use flex to align items and icons */
+  align-items: center; /* Center align items and icons */
+  gap: 10px; /* Gap between icon and text */
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .menubar h4:hover {
-  background-color: #2980b9;
-  color: #ffffff; 
-  padding-left: 20px; 
+  background-color: #1a1a1a; /* Even darker on hover */
+  color: #fff;
 }
 
 .logo {

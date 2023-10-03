@@ -1,0 +1,32 @@
+.home-boxes {
+    display: flex;
+    height: 90.8vh; /* Cover the full viewport height */
+    align-items: stretch; /* Stretch the boxes to cover the full height */
+    justify-content: center;
+}
+
+.home-box {
+    flex: 1; /* This will make sure each box takes half the width of the container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgray; /* Semi-transparent based on your color */
+    color: #000000;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    text-decoration: none; /* Remove underline */
+}
+
+.home-box:hover {
+    background-color: rgb(180, 180, 180); /* Slightly less transparent on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+    margin-left: 150px; /* This should be the width of your menubar */
+}
+
