@@ -10,12 +10,15 @@ import Output from "../Output";
 
 
 export class Form extends Component {
-  
+constructor(props){
+  super(props)
+
+
+}
   state = {
     page: 1,
     selectedSystems: [], // To store selected systems
     systemName: '',
-    apps: this.props
   };
 
   // Function to add a selected system
@@ -55,21 +58,23 @@ export class Form extends Component {
   handleChange = input => e => {
     this.setState({ [input]: e.target.value });
   };
-  updateScore = (scores)=>{
-  this.setState({ selectedSystems: scores})
-  console.log(this.props);
- 
-}
+  updateScore = (scores) => {
+    this.setState({ selectedSystems: scores })
+  }
 
   setSystems = (data) => {
-   this.setState({systems:data})
+    this.setState({ systems: data })
   }
   render() {
-    const { page: step, selectedSystems, systemName ,apps} = this.state;
-    const values = {systemName};
+    const { page: step, selectedSystems, systemName } = this.state;
+    const values = { systemName };
+        const apps = this.props;
+
+    console.log(this.props);
+  
 
     switch (step) {
-      case 1: return ( <FormSystems
+      case 1: return (<FormSystems
         nextStep={this.nextStep}
         handleChange={this.handleChange}
         values={values}
@@ -80,7 +85,7 @@ export class Form extends Component {
       />
       );
       case 2:
-        return (          <FormPriority
+        return (<FormPriority
           nextStep={this.nextStep}
           prevStep={this.prevStep}
           handleChange={this.handleChange}
@@ -88,19 +93,20 @@ export class Form extends Component {
           selectedSystems={selectedSystems}
           updateScore={this.updateScore}
         />
-      );
-    case 3:
-      return (
-        <FormApplications
-          nextStep={this.nextStep}
-          prevStep={this.prevStep}
-          handleChange={this.handleChange}
-          values={values}
-          apps={apps}
-        />
-      );
-    default:
-      return <p>Default content</p>;
+        );
+      case 3:
+        return (
+          <FormApplications
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+            selectedSystems={selectedSystems}
+            values={values}
+            apps={apps}
+          />
+        );
+      default:
+        return <p>Default content</p>;
     }
   }
 }
