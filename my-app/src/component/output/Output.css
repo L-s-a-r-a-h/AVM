@@ -1,3 +1,9 @@
+.output-panel {
+    background-color: #F1F0F0;
+    height: 630px;
+    overflow-y: auto;
+    padding: 20px;
+}
 .host-list-header {
     background-color: lightgray;
     padding: 15px 15px;
@@ -21,6 +27,7 @@
 }
 .host-col-2-1 {
     flex-basis: 70%;
+    padding-right: 50px;
 }
 .host-col-2-2 {
     flex-basis: 20%;
