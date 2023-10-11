@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { useState } from "react";
 import {fileProcess} from "../test/fileProcess"
 import Papa from "papaparse";
-import {getAppList} from "../test/api"
+
 import Form from './FormComponents/Form';
 import {NavLink, useNavigate } from 'react-router-dom';
 import './styles/Start.css';
@@ -40,10 +40,7 @@ const Start = () => {
         };
 
         reader.readAsText(file);
-        (async () => {
-            setAffectedApp(await getAppList(data))
-          })()
-
+   
     };
 
     const { getRootProps, getInputProps } = useDropzone({
@@ -82,7 +79,7 @@ const Start = () => {
                 
             </div>
             <div className="results">
-                {result && <Form props={apps} />}
+                {result && <Form props={data} />}
             </div>
         </div>
         </div>

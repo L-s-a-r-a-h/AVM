@@ -22,19 +22,29 @@ export class FormApplications extends Component {
     this.props.prevStep();
 
   }
+  getValues(){
+
+    //this.props.apps
+  }
   render() {
     const { selectedSystems, handleChange, values, apps } = this.props;
-    
-    console.log(apps)
-    const list = apps.props;
+ 
+    const uniqueArray = apps.filter((value, index) => {
+      const _value = JSON.stringify(value);
+      return index === apps.findIndex(apps => {
+        return JSON.stringify(apps) === _value;
+      });
+    });
+    console.log(uniqueArray)
+
     return (
       <div className="form-container">
 
 
         <p>Please the main system used for each application</p>
         <form id="form">
-          {list && list.length > 0 ? (
-            list.map((item,index) => (
+          {uniqueArray && uniqueArray.length > 0 ? (
+            uniqueArray.map((item,index) => (
               <div key={index} className="system-priority">
                 <label className="system-label">{item[0]} {item[1]}</label>
                 <select
