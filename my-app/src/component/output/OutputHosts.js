@@ -1,8 +1,11 @@
 import React, { Component, useEffect, useState } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import MenuBar from "../MenuBar";
-import { NavLink, useLocation, useNavigate } from "react-router-dom"
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { AiFillInfoCircle } from "react-icons/ai";
+import HSBar from "react-horizontal-stacked-bar-chart";
 import "./Output.css"
+import OutputCVEList from "./OutputCVEList";
 
 function OutputHosts() {
     
@@ -35,23 +38,46 @@ function OutputHosts() {
                 hosts.push({
                     host_name : data.Host,
                     cve_data : [],
-                    total_prio : 0
+                    total_prio : 0,
+                    critical : 0,
+                    high : 0,
+                    medium : 0,
+                    low : 0
                 })
             }
             if (host !== undefined) {
                 host.cve_data.push({
                     cve_id: data.CVE,
+                    name: data.Name,
+                    description : data.Description,
                     severity: data.Risk,
                     severity_num: Risks.get(data.Risk),
-                    name: data.Name,
                     Priority_Score: parseFloat(data.CVSS).toFixed(2),
-                    description : data.Description
+                    solution: data.Solution,
+                    tags : []
                 })
                 host.total_prio = host.total_prio + parseFloat(data.CVSS);
+                switch(data.Risk) {
+                    case "Critical":
+                        host.critical = host.critical + 1;
+                        break;
+                    case "High":
+                        host.high = host.high + 1;
+                        break;
+                    case "Medium":
+                        host.medium = host.medium + 1;
+                        break;
+                    case "Low":
+                        host.low = host.low + 1;
+                        break;
+                }
                 host.cve_data.sort((a,b) => {
                     return  b.severity_num - a.severity_num || b.Priority_Score - a.Priority_Score;
                 })
             }
+            hosts.sort((a, b) => {
+                return b.total_prio - a.total_prio;
+            })
         }
 
         console.log(hosts);
@@ -79,12 +105,23 @@ function OutputHosts() {
                                 <li class="host-list-item" onClick={() => showCVEs(Host.cve_data)}>
                                     <div class="host-col-1">{Host.host_name}</div>
                                     <div class="host-col-2"> 
-                                        <div class="host-col-2-1"> Stacked Bar Here </div>
+                                        <div class="host-col-2-1">
+                                            <HSBar
+                                                height="16"
+                                                data={[
+                                                    { value: Host.critical, color: "red"},
+                                                    { value: Host.high, color: "rgb(255, 102, 102)"},
+                                                    { value: Host.medium, color: "orange"},
+                                                    { value: Host.low, color: "rgb(255, 224, 102)"}
+                                                ]}
+                                                outlineColor="black"
+                                            />
+                                        </div>
                                         <div class="host-col-2-2"> Total: {Host.cve_data.length} </div>
                                     </div>          
                                     <div class="host-col-3">
                                         <div data-tooltip-id="host-tooltip" data-tooltip-content={"Total Priority Score: " + Host.total_prio}>
-                                            Info
+                                            <AiFillInfoCircle/>
                                         </div>
                                         <ReactTooltip id="host-tooltip"/>
                                     </div>
