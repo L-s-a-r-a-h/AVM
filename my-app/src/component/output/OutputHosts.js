@@ -48,11 +48,13 @@ function OutputHosts() {
             if (host !== undefined) {
                 host.cve_data.push({
                     cve_id: data.CVE,
+                    name: data.Name,
+                    description : data.Description,
                     severity: data.Risk,
                     severity_num: Risks.get(data.Risk),
-                    name: data.Name,
                     Priority_Score: parseFloat(data.CVSS).toFixed(2),
-                    description : data.Description
+                    solution: data.Solution,
+                    tags : []
                 })
                 host.total_prio = host.total_prio + parseFloat(data.CVSS);
                 switch(data.Risk) {
