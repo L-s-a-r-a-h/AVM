@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { useState } from "react";
-import {fileProcess} from "../test/fileProcess"
+import {default as fileProcess} from "../test/fileProcess"
 import Papa from "papaparse";
-
 import Form from './FormComponents/Form';
 import {NavLink, useNavigate } from 'react-router-dom';
 import './styles/Start.css';
 import { useDropzone } from 'react-dropzone';
-//import * as func from "../test/api";
 import MenuBar from './MenuBar';
  
 const allowedExtensions = ["csv"];
@@ -28,13 +26,13 @@ const Start = () => {
             const csv = Papa.parse(target.result, { header: true });
             const parsedData = csv?.data;
 
-            // let riskArr = fileProcess(parsedData);
-            // if (!riskArr) {
-            //     return setResult(false);
-            //     // setMessage('CSV file does not contain correct elements');
-            // }
+            let riskArr = fileProcess(parsedData);
+            if (!riskArr) {
+                return setResult(false);
+                // setMessage('CSV file does not contain correct elements');
+            }
 
-            // setData(riskArr);
+            setData(riskArr);
             setResult(true);
             setMessage('Upload success!');
         };

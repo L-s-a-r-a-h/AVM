@@ -17,28 +17,20 @@ export async function getAppList(dataArr,cveList) {
  try {
     run = true;
     await getList(dataArr).then();
-  //  let text =cveList.props[1].Solution +cveList.props[1].Name+cveList.props[1].Description;
-   // console.log(text)
 
-  //  let el2 =new RegExp(list[0][1],'i');
-   // console.log(text.search(el2));
-    //cveList.props.forEach(row =>{
-    for (let row = 0; row< cveList.props.length;row++){  
-    let text = row.Solution +row.Name + row.Description
-  
-   // console.log(text)     
+//     for (let row = 0; row< cveList.props.length;row++){  
+//     let text = row.Solution +row.Name + row.Description
+//    list.forEach(element =>{
+//         let el = new RegExp(element[0],'i')
+//         console.log(text.search(el));
+//         if(text.search(el) != -1){
+//             newList.push(element);
+//         }
+//     })
 
-   list.forEach(element =>{
-        let el = new RegExp(element[0],'i')
-        console.log(text.search(el));
-        if(text.search(el) != -1){
-            newList.push(element);
-        }
-    })
+// console.log(newList);
 
-console.log(newList);
-
-}
+//         }
 
 
         return list;
