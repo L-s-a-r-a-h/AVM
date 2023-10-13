@@ -7,7 +7,7 @@ import FormPriority from "./FormPriority";
 import { useLocation } from "react-router-dom";
 import { getAppList } from "../../test/getApps";
 
-import Output from "../Output";
+import Output from "../output/Output";
 
 
 export class Form extends Component {

@@ -28,13 +28,13 @@ const Start = () => {
             const csv = Papa.parse(target.result, { header: true });
             const parsedData = csv?.data;
 
-            let riskArr = fileProcess(parsedData);
-            if (!riskArr) {
-                return setResult(false);
-                // setMessage('CSV file does not contain correct elements');
-            }
+            // let riskArr = fileProcess(parsedData);
+            // if (!riskArr) {
+            //     return setResult(false);
+            //     // setMessage('CSV file does not contain correct elements');
+            // }
 
-            setData(riskArr);
+            // setData(riskArr);
             setResult(true);
             setMessage('Upload success!');
         };
