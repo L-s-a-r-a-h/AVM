@@ -2,20 +2,55 @@ import React, { Component } from 'react';
 import '../styles/FormPriority.css';
 
 class FormPriority extends Component {
+  constructor(props) {
+   
+    super(props);
+    this.state = {
+      systemsScore: [],
+      systemsList: [], // To store the list of selected systems
+    };
+  }
+
   continue = (e) => {
     e.preventDefault();
+    this.handleAddScore()
     this.props.nextStep();
   };
 
   back = (e) => {
     e.preventDefault();
     this.props.prevStep();
-  };
 
+  }
+  handleAddScore() {
+    const { systemsScore, systemsList } = this.state;
+    var form = document.getElementById('form');
+    var data = new FormData(form);
+    let list=[];
+    for (var [key, value] of data) {
+      list.push([key, value]);
+    }
+    console.log(list);
+    this.setState({ systemsScore: list});
+    this.setState(
+      {
+        systemsScore: '', // Clear the selected value
+        systemsList: [...systemsList, systemsScore],
+      },        () => {
+        // Pass the updated systems list to the parent component (Form)
+        this.props.updateScore(this.state.systemsList);
+      })
+
+   // this.props.updateScore(list);
+  }
+
+
+  //form  page  to set the priority of the systems
   render() {
+    const { systemsList } = this.state;
     const { selectedSystems, handleChange, values } = this.props;
 
-    return (
+    return (<>
       <div className="form-container">
         <h3 className="form-heading">Form</h3>
         <p className="form-instructions">
@@ -26,16 +61,16 @@ class FormPriority extends Component {
           is compromised.
         </p>
 
-        <form>
+
+        <form id="form">
           {selectedSystems && selectedSystems.length > 0 ? (
             selectedSystems.map((system, index) => (
               <div key={index} className="system-priority">
                 <label className="system-label">{system}</label>
                 <select
                   className="system-select"
-                  name={`priority-${index}`}
-                  value={values[`priority-${index}`]}
-                  onChange={handleChange(`priority-${index}`)}
+                  name={`${system}`}
+                  value={values[`${system}-${index}`]}
                 >
                   <option value="1">1 (Lowest)</option>
                   <option value="2">2</option>
@@ -51,16 +86,22 @@ class FormPriority extends Component {
         </form>
 
         <div className="button-container">
-          <button type="button" className="button" onClick={this.continue}>
-            Next
-          </button>
           <button type="button" className="button back-button" onClick={this.back}>
             Back
           </button>
+          <button type="button" className="button" onClick={this.continue}>
+            Next
+          </button>
+
         </div>
       </div>
-    );
-  }
-}
 
-export default FormPriority;
+    </>)
+  }
+
+
+
+
+
+}
+export default FormPriority

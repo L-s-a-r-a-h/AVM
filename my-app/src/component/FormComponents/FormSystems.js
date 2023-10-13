@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import '../styles/FormSystems.css';
 
-class FormSystems extends Component {
+export class FormSystems extends Component {
+  //  const { data, handleChange } = useFormContext()
+  //form page to set the main systems
   constructor(props) {
     super(props);
     this.state = {
       selectedSystem: '', // To store the selected system
       systemsList: [], // To store the list of selected systems
       systemOptions: [
-        // Define your options here
         'Windows 10',
         'Windows 11',
         'Google Chrome',
@@ -39,90 +40,87 @@ class FormSystems extends Component {
     }
   };
 
-handleRemoveSystem = (index) => {
-  const { systemsList } = this.state;
-  const updatedList = [...systemsList];
-  updatedList.splice(index, 1); // Remove the selected system
-  this.setState({ systemsList: updatedList }, () => {
-    // Pass the updated systems list to the parent component (Form)
-    this.props.updateSelectedSystems(this.state.systemsList);
-  });
-};
-
-  continue = (e) => {
+  handleRemoveSystem = (index) => {
+    const { systemsList } = this.state;
+    const updatedList = [...systemsList];
+    updatedList.splice(index, 1); // Remove the selected system
+    this.setState({ systemsList: updatedList }, () => {
+      // Pass the updated systems list to the parent component (Form)
+      this.props.updateSelectedSystems(this.state.systemsList);
+    });
+  };
+  continue = e => {
     e.preventDefault();
-    // You can pass the selected systems in this.props.values or any other preferred way
     this.props.nextStep();
   };
 
-  back = (e) => {
+  back = e => {
     e.preventDefault();
     this.props.prevStep();
-  };
+
+  }
+
 
   render() {
+   
     const { selectedSystem, systemsList, systemOptions } = this.state;
 
-    return (
-      <div className="formcontainer">
-        <h3>Form</h3>
-
-        <form className="form">
-          <label>Please specify main business systems, then click Add:</label>
-          <select
-            value={selectedSystem}
-            onChange={this.handleChange}
-            className="input"
-          >
-            <option value="">Select a system</option>
-            {systemOptions.map((option, index) => (
-              <option key={index} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-
-          <button
-            type="button"
-            onClick={this.handleAddSystem}
-            className="button"
-          >
-            Add
-          </button>
-        </form>
-
-        <table>
-          <thead>
-            <tr>
-              <div className="businesssystem">
-              <th>Business Systems</th>
-              </div>
-            </tr>
-          </thead>
-          <tbody>
-            {systemsList.map((system, index) => (
-              <tr key={index}>
-                <td>{system}</td>
-                <td>
-                  <div className="removeBtnField">
-                    <button
-                      type="button"
-                      onClick={() => this.handleRemoveSystem(index)}
-                      className="remove-button"
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <button type="button" onClick={this.continue} className="button">
-          Next
+    return (<div>
+      <form className="form">
+        <label>Please specify main business systems, then click Add:</label>
+        <select
+          value={selectedSystem}
+          onChange={this.handleChange}
+          className="input"
+        >
+          <option value="">Select a system</option>
+          {systemOptions.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <input id="input"  onChange={this.handleChange} />
+        <button
+          type="button"
+          onClick={this.handleAddSystem}
+          className="button"
+        >
+          Add
         </button>
-      </div>
+      </form>
+
+      <table>
+        <thead>
+          <tr  className="businesssystem">
+            
+              <th>Business Systems</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {systemsList.map((system, index) => (
+            <tr key={index}>
+              <td>{system}</td>
+              <td className="removeBtnField">
+                
+                  <button
+                    type="button"
+                    onClick={() => this.handleRemoveSystem(index)}
+                    className="remove-button"
+                  >
+                    Remove
+                  </button>
+                
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <button type="button" onClick={this.continue} className="button">
+        Next
+      </button>
+    </div>
     );
   }
 }
