@@ -8,7 +8,6 @@ class FormSystems extends Component {
       selectedSystem: '', // To store the selected system
       systemsList: [], // To store the list of selected systems
       systemOptions: [
-        // Define your options here
         'Windows 10',
         'Windows 11',
         'Google Chrome',
@@ -51,7 +50,6 @@ handleRemoveSystem = (index) => {
 
   continue = (e) => {
     e.preventDefault();
-    // You can pass the selected systems in this.props.values or any other preferred way
     this.props.nextStep();
   };
 
