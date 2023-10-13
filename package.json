@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-icons": "^4.11.0",
+    "react-tooltip": "^5.21.5"
+  }
+}
