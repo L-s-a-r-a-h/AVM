@@ -53,8 +53,6 @@ const Start = () => {
         if (!uploadedFileName) {
             return setMessage('Select a CSV file');
         }
-
-        // Handle form submission here if needed
     };
 
    

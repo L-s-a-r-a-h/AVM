@@ -10,7 +10,6 @@ export class FormSystems extends Component {
       selectedSystem: '', // To store the selected system
       systemsList: [], // To store the list of selected systems
       systemOptions: [
-        // Define your options here
         'Windows 10',
         'Windows 11',
         'Google Chrome',

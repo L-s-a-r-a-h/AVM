@@ -9,6 +9,7 @@ import Form from './component/FormComponents/Form';
 import Output from './component/output/Output';
 import OutputHosts from './component/output/OutputHosts';
 import OutputCVEList from './component/output/OutputCVEList';
+import Signup from './component/Signup';
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
         <Route exact path='/' element ={<Home/>}/>
         <Route path='Home' element={<Home/>}> </Route>
         <Route path='Login' element={<Login/>}> </Route>
-      
+        <Route path='Signup' element={<Signup/>}> </Route>
                 <Route path='Start' element={<Start/>}> </Route>
                 <Route path='Form' element={<Form/>}> </Route>
                 <Route path='Output' element={<Output/>}> </Route>
