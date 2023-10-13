@@ -3,10 +3,10 @@
     $password = $_POST['password'];
 
     // Database Connection
-    $host = "your_host";
-    $username = "your_username";
-    $password_db = "your_password";
-    $database = "your_database";
+    $host = "root";
+    $username = "";
+    $password_db = "";
+    $database = "user_authentication";
 
     $con = new mysqli($host, $username, $password_db, $database);
 
