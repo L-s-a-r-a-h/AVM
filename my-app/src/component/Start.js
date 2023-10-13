@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { useState } from "react";
-import {fileProcess} from "../test/fileProcess"
+import { default as fileProcess } from "../test/fileProcess"
 import Papa from "papaparse";
-
 import Form from './FormComponents/Form';
 import {NavLink, useNavigate } from 'react-router-dom';
 import './styles/Start.css';
@@ -28,13 +27,13 @@ const Start = () => {
             const csv = Papa.parse(target.result, { header: true });
             const parsedData = csv?.data;
 
-            // let riskArr = fileProcess(parsedData);
-            // if (!riskArr) {
-            //     return setResult(false);
-            //     // setMessage('CSV file does not contain correct elements');
-            // }
+            let riskArr = fileProcess(parsedData);
+            if (!riskArr) {
+                return setResult(false);
+                //setMessage('CSV file does not contain correct elements');
+            }
 
-            // setData(riskArr);
+            setData(riskArr);
             setResult(true);
             setMessage('Upload success!');
         };
@@ -74,7 +73,9 @@ const Start = () => {
                         )}
                     </div>
                 </div>
-                
+                <NavLink to="/OutputHosts" state={data}>
+                        <button disabled={!uploadedFileName}> Results </button>
+                </NavLink>
             </div>
             <div className="results">
                 {result && <Form props={data} />}
