@@ -30,6 +30,7 @@ const Start = () => {
             if (!riskArr) {
                 return setResult(false);
                 // setMessage('CSV file does not contain correct elements');
+
             }
 
             setData(riskArr);
@@ -72,7 +73,9 @@ const Start = () => {
                         )}
                     </div>
                 </div>
-                
+                <NavLink to="/OutputHosts" state={data}>
+                        <button disabled={!uploadedFileName}> Results </button>
+                </NavLink>
             </div>
             <div className="results">
                 {result && <Form props={data} />}
