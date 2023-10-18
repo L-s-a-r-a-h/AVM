@@ -26,6 +26,9 @@ export default function Login() {
         else if(res.data === 'Please enter all required fields.') {
           setMessage('Please enter all required fields.');
         } 
+        else if(res.data === 'Invalid email or password') {
+          setMessage('Invalid email or password');
+        } 
         else {
           setMessage('Login failed. Please check your credentials.');
         }
