@@ -28,6 +28,7 @@ function OutputCVEList() {
             <MenuBar/>
             <div class="body">
             <h1> Results </h1>
+            <button> Back </button>
                 <div class="output-panel"> 
                     <ul class="cve-list">
                         <li class="cve-list-header">

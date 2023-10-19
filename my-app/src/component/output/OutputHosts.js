@@ -7,6 +7,27 @@ import HSBar from "react-horizontal-stacked-bar-chart";
 import "./Output.css"
 import OutputCVEList from "./OutputCVEList";
 
+const test_systems = [
+    {
+        systemName: "System 1",
+        ipAddress: "192.168.1.178",
+        priority_rating: 5,
+        applications: [
+            {name: "application1"},
+            {name: "application2"}
+        ]
+    },
+    {
+        systemName: "System 2",
+        ipAddress: "192.168.1.170",
+        priority_rating: 4,
+        applications: [
+            {name: "application2"},
+            {name: "application3"}
+        ]
+    }
+]
+
 function OutputHosts() {
     
     const [HostList, setHosts] = useState([]);
@@ -46,7 +67,7 @@ function OutputHosts() {
                 })
             }
             if (host !== undefined) {
-                host.cve_data.push({
+                let cve = {
                     cve_id: data.CVE,
                     name: data.Name,
                     description : data.Description,
@@ -54,9 +75,12 @@ function OutputHosts() {
                     severity_num: Risks.get(data.Risk),
                     Priority_Score: parseFloat(data.CVSS).toFixed(2),
                     solution: data.Solution,
-                    tags : []
-                })
-                host.total_prio = host.total_prio + parseFloat(data.CVSS);
+                    tags : ["application2"]
+                }
+                
+                cve.Priority_Score = parseFloat(prioritize_cve(cve, host, cve.tags, test_systems)).toFixed(2);
+                host.cve_data.push(cve);
+                host.total_prio = host.total_prio + parseFloat(cve.Priority_Score);
                 switch(data.Risk) {
                     case "Critical":
                         host.critical = host.critical + 1;
@@ -83,6 +107,24 @@ function OutputHosts() {
         console.log(hosts);
         setHosts(hosts);
     }, []);
+
+    const prioritize_cve = (cve, host, tags, form_data) => {
+        let new_score = parseFloat(cve.Priority_Score);
+
+        for (let system of form_data) {
+            if (system.ipAddress === host.host_name) {
+                for (let application of system.applications) {
+                    for (let tag of tags) {
+                        if (application.name === tag) {
+                            new_score = parseFloat(new_score) + parseFloat(system.priority_rating);
+                        }
+                    }
+                }
+                break;
+            }
+        }
+        return parseFloat(new_score);
+    }
 
     // Navigate to Host
     const showCVEs = (data) => {
