@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
+const bcrypt = require('bcrypt');
 const cors = require('cors');
 
 const app = express();
@@ -28,42 +29,60 @@ app.get('/', (req, res) => {
 });
 
 app.post('/users', (req, res) => {
-  const sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+  const sql = "SELECT * FROM users WHERE email = ?";
 
   if (!req.body.email || !req.body.password) {
     return res.json("Please enter all required fields.");
   }
 
-  db.query(sql, [req.body.email, req.body.password], (err, data) => {
+  db.query(sql, [req.body.email], async (err, data) => {
     if (err) return res.json("Login Failed");
+
     if(data.length > 0){
-      return res.json("Login Successfully");
-    }
-    else{
-      return res.json("No Record");
+      const storedHashedPassword = data[0].password; 
+      const passwordMatch = await bcrypt.compare(req.body.password, storedHashedPassword);
+
+      if (passwordMatch) {
+        return res.json("Login Successfully");
+      } 
+      else {
+      return res.json("Invlaid email or password");
+      }
+    } else {
+      return res.json("Invalid email or password"); 
     }
     });
   })
 
-  app.post('/signup', (req, res) => {
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  app.post('/signup', async (req, res) => {
   
     if (!req.body.fullName || !req.body.email || !req.body.password) {
       return res.json("Please enter all required fields.");
+    }  
+    if (!isValidEmail(req.body.email)) {
+        return res.json("Invalid email format.");
     }
     if (req.body.password.length < 8) {
       return res.json("Password must be at least 8 characters long.");
     }
+
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
   
     db.query('SELECT * FROM users WHERE email = ?', [req.body.email], (err, results) => {
       if (err) {
         return res.json("Internal server error");
       }
-  
+    
       if (results.length > 0) {
         return res.json("Email already in use");
       }
 
-      db.query('INSERT INTO users (fullName, email, password) VALUES (?, ?, ?)', [req.body.fullName, req.body.email, req.body.password], (err, results) => {
+      db.query('INSERT INTO users (fullName, email, password) VALUES (?, ?, ?)', [req.body.fullName, req.body.email, hashedPassword], (err, results) => {
         if (err) {
           return res.json("Internal server error");
         }
