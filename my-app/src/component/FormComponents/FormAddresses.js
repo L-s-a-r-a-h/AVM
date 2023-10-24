@@ -45,7 +45,7 @@ export class FormAddresses extends Component {
                 >
                   {selectedSystems && selectedSystems.length > 0 ? (
                     selectedSystems.map((system, i) => (
-                      <option value={system}>{system[0]}</option>
+                      <option value={system}>{system[1]}</option>
                     ))
                   ) : (
                     <p>Nothing to display.</p>

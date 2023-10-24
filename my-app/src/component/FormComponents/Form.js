@@ -2,10 +2,9 @@
 import React, { Component } from "react";
 import { useForm } from "react-hook-form";
 import FormSystems from "./FormSystems";
-import FormApplications from "../Archive/FormApplications";
 import FormPriority from "./FormPriority";
 
-import Output from "../output/Output";
+import OutputHosts from "../output/Output";
 import FormAddresses from "./FormAddresses";
 
 
@@ -118,8 +117,9 @@ export class Form extends Component {
           />
         );
       default:
-        return <Output
-          props={this.props}
+        return <OutputHosts
+        addressPriority={hosts}
+        cveList={this.props}
         />;
     }
 
