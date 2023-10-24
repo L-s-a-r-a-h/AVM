@@ -1,7 +1,7 @@
 
 
 
-export function fileProcess(data) {
+export default function fileProcess(data) {
     let newData = checkFile(data);
 
     if (!newData) {

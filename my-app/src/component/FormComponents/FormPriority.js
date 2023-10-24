@@ -19,7 +19,7 @@ class FormPriority extends Component {
     var data = new FormData(form);
     let list=[];
     for (var [key, value] of data) {
-      list.push([key, value]);
+      list.push([value, key]);
     }
       this.props.updateSystemRank(list);
  
