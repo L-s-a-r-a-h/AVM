@@ -75,13 +75,13 @@ function OutputHosts() {
                     severity_num: Risks.get(data.Risk),
                     Priority_Score: parseFloat(data.CVSS).toFixed(2),
                     solution: data.Solution,
-                    tags : ["application2"]
+                    tags : []
                 }
                 
                 cve.Priority_Score = parseFloat(prioritize_cve(cve, host, cve.tags, test_systems)).toFixed(2);
                 host.cve_data.push(cve);
-                host.total_prio = host.total_prio + parseFloat(cve.Priority_Score);
-                switch(data.Risk) {
+                host.total_prio = host.total_prio + parseFloat(cve.Priority_Score);        
+                switch(data.Risk) { 
                     case "Critical":
                         host.critical = host.critical + 1;
                         break;

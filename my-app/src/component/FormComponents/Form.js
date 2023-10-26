@@ -111,16 +111,14 @@ export class Form extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             hosts={hosts}
-            selectedSystems={systemRank}
-
+            selectedSystems={systemRank}    
             updateHostSystems={this.updateHostSystems}
           />
         );
       default:
-        return <OutputHosts
-        addressPriority={hosts}
-        cveList={this.props}
-        />;
+        return (
+          <p> ... </p>
+        );
     }
 
   }
