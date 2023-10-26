@@ -25,6 +25,10 @@ export default function Signup() {
           setIsSuccess(false);
           setMessage('Email already in use. Please use a different email.');
         } 
+        else if (res.data === 'Invalid email format.') {
+          setIsSuccess(false);
+          setMessage('Invalid Email Format.');
+        } 
         else if (res.data === 'Password must be at least 8 characters long.') {
           setIsSuccess(false);
           setMessage('Password must be at least 8 characters long.');
@@ -43,7 +47,6 @@ export default function Signup() {
 
   useEffect(() => {
     if (message === 'Signup successful. Please return to the login page.') {
-      // Add any additional logic or navigation here if needed
     }
   }, [message]);
 

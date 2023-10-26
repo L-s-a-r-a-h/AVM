@@ -2,12 +2,10 @@
 import React, { Component } from "react";
 import { useForm } from "react-hook-form";
 import FormSystems from "./FormSystems";
-import FormApplications from "./FormApplications";
 import FormPriority from "./FormPriority";
-import { useLocation } from "react-router-dom";
-import { getAppList } from "../../test/getApps";
 
-import Output from "../output/Output";
+import OutputHosts from "../output/Output";
+import FormAddresses from "./FormAddresses";
 
 
 export class Form extends Component {
@@ -16,39 +14,25 @@ export class Form extends Component {
     //IMPLEMENT OTHER JUNK HERE
     this.state = {
       page: 1,
+      systemRank:[],
       selectedSystems: [], // To store selected systems
-      systemName: '',
-      apps: null
+      hosts: [], // contain the IP address and the the priority
     };
   }
 
   componentDidMount() {
-    this.loadData();
-    console.log(this.props)
+    const hostIP = [...new Set(this.props.props.map(item => item.Host))].filter(item => item);
+    this.updateHostSystems(hostIP)
    
-
   }
-  loadData() {
-    try {
-      this.getAffected(this.props.props).then(console.log("then"))
-    } catch (error) {
-
-    }
+//update the host IP
+  updateHostSystems = (systems) => {
+    this.setState({
+      hosts: systems,
+    });
 
   };
 
-
-  //function to get affected applications
-  async getAffected(data) {
-    (async () => {
-      return (await getAppList(data,this.props))
-    })().then(data =>
-      this.setState({
-        apps: [...data]
-      })
-    );
-
-  }
   // Function to add a selected system
   addSelectedSystem = (system) => {
     this.setState((prevState) => ({
@@ -68,7 +52,15 @@ export class Form extends Component {
     this.setState({
       selectedSystems: systems,
     });
+
   };
+    // Update selected systems in the state
+    updateSystemRank = (systems) => {
+      this.setState({
+        systemRank: systems,
+      });
+  
+    };
 
   nextStep = () => {
     const { page } = this.state;
@@ -86,20 +78,11 @@ export class Form extends Component {
   handleChange = input => e => {
     this.setState({ [input]: e.target.value });
   };
-  updateScore = (scores) => {
-    this.setState({ selectedSystems: scores })
-  };
 
-  setSystems = (data) => {
-    this.setState({ systems: data })
-  };
   render() {
-    if (!this.state.apps) {
-      return (<div >loading</div >)
-    }
-    const { page: step, selectedSystems, systemName, apps } = this.state;
+
+    const { page: step, selectedSystems, systemName, hosts,systemRank } = this.state;
     const values = { systemName };
-    //const apps = this.props;
     switch (step) {
       case 1: return (<FormSystems
         nextStep={this.nextStep}
@@ -118,22 +101,26 @@ export class Form extends Component {
           handleChange={this.handleChange}
           values={values}
           selectedSystems={selectedSystems}
-          updateScore={this.updateScore}
+          updateSystemRank={this.updateSystemRank}
         />
         );
       case 3:
         return (
-          <FormApplications
+          <FormAddresses
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             handleChange={this.handleChange}
-            selectedSystems={selectedSystems}
-            values={values}
-            apps={apps}
+            hosts={hosts}
+            selectedSystems={systemRank}
+
+            updateHostSystems={this.updateHostSystems}
           />
         );
       default:
-        return <p>Default content</p>;
+        return <OutputHosts
+        addressPriority={hosts}
+        cveList={this.props}
+        />;
     }
 
   }
