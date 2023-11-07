@@ -7,27 +7,6 @@ import HSBar from "react-horizontal-stacked-bar-chart";
 import "./Output.css"
 import OutputCVEList from "./OutputCVEList";
 
-const test_systems = [
-    {
-        systemName: "System 1",
-        ipAddress: "192.168.1.178",
-        priority_rating: 5,
-        applications: [
-            {name: "application1"},
-            {name: "application2"}
-        ]
-    },
-    {
-        systemName: "System 2",
-        ipAddress: "192.168.1.170",
-        priority_rating: 4,
-        applications: [
-            {name: "application2"},
-            {name: "application3"}
-        ]
-    }
-]
-
 function OutputHosts() {
     
     const [HostList, setHosts] = useState([]);
@@ -42,7 +21,8 @@ function OutputHosts() {
 
     // Get CVE Report from Start Page
     const location = useLocation();
-    const cve_data = location.state;
+    const cve_data = location.state.cve_data;
+    const form_data = location.state.form_data;
 
     useEffect(() => {
         let hosts = [];
@@ -74,11 +54,12 @@ function OutputHosts() {
                     severity: data.Risk,
                     severity_num: Risks.get(data.Risk),
                     Priority_Score: parseFloat(data.CVSS).toFixed(2),
-                    solution: data.Solution,
-                    tags : []
+                    cvss : data.CVSS,
+                    vpr : data.VPR,
+                    solution: data.Solution
                 }
                 
-                cve.Priority_Score = parseFloat(prioritize_cve(cve, host, cve.tags, test_systems)).toFixed(2);
+                cve.Priority_Score = parseFloat(adjust_priority(cve, host, form_data)).toFixed(2);
                 host.cve_data.push(cve);
                 host.total_prio = host.total_prio + parseFloat(cve.Priority_Score);        
                 switch(data.Risk) { 
@@ -108,21 +89,18 @@ function OutputHosts() {
         setHosts(hosts);
     }, []);
 
-    const prioritize_cve = (cve, host, tags, form_data) => {
+    const adjust_priority = (cve, host, form_data) => {
         let new_score = parseFloat(cve.Priority_Score);
 
         for (let system of form_data) {
-            if (system.ipAddress === host.host_name) {
-                for (let application of system.applications) {
-                    for (let tag of tags) {
-                        if (application.name === tag) {
-                            new_score = parseFloat(new_score) + parseFloat(system.priority_rating);
-                        }
-                    }
+            for (let sys_host of system.hosts) {
+                if (sys_host === host.host_name) {
+                    new_score = parseFloat(new_score) + parseFloat(system.systemRating);
+                    return parseFloat(new_score);
                 }
-                break;
             }
         }
+        // Return if no adjustments were made.
         return parseFloat(new_score);
     }
 

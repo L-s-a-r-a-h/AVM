@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import { useLocation, useNavigate } from "react-router-dom";
+import OutputHosts from "../output/OutputHosts";
 
-// form page for mapping the applications to the mian systems
+
+// form page for mapping the applications to the main systems
 export class FormAddresses extends Component {
- 
-
+  
   continue = e => {
     e.preventDefault();
-    this.handleAddScore()
+    this.handleAddressLink()
     this.props.nextStep();
   };
 
@@ -14,7 +16,8 @@ export class FormAddresses extends Component {
     e.preventDefault();
     this.props.prevStep();
   }
-  handleAddScore() {
+
+  handleAddressLink() {
 
     var form = document.getElementById('form');
     var data = new FormData(form);
@@ -23,8 +26,9 @@ export class FormAddresses extends Component {
       list.push([host, value]);
     }
     console.log(list)
-      this.props.updateHostSystems(list);
+    this.props.updateHostSystems(list);
   }
+
   render() {
     const { selectedSystems, hosts } = this.props;
     return (
@@ -45,7 +49,7 @@ export class FormAddresses extends Component {
                 >
                   {selectedSystems && selectedSystems.length > 0 ? (
                     selectedSystems.map((system, i) => (
-                      <option value={system}>{system[1]}</option>
+                      <option value={system[1]}>{system[1]}</option>
                     ))
                   ) : (
                     <p>Nothing to display.</p>
@@ -65,7 +69,7 @@ export class FormAddresses extends Component {
             Back
           </button>
           <button type="button" className="button" onClick={this.continue}>
-            Next
+            Results
           </button>
 
         </div>

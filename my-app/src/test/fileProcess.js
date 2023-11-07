@@ -29,6 +29,11 @@ function checkFile(data) {
                     data[x][replacedKey] = data[x][key];
                     delete data[x][key];
                 }
+                var replacedKey = key.replace("VPR Score", "VPR");
+                if (key === "VPR Score") {
+                    data[x][replacedKey] = data[x][key];
+                    delete data[x][key];
+                }
                 replacedKey = key.replace("Plugin ID", "PluginID");
                 if (key === "Plugin ID") {
                     data[x][replacedKey] = data[x][key];

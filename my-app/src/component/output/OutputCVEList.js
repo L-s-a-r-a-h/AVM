@@ -54,7 +54,7 @@ function OutputCVEList() {
                                         <div class="cve-content">
                                             <h4> Description </h4>  
                                             <p>{CVEItem.description}</p>
-
+                                            <p> VPR - {CVEItem.vpr !== "" ? CVEItem.vpr : "n/a"}</p>
                                             <h4> Solution </h4>  
                                             <p>{CVEItem.solution}</p>
                                         </div>          

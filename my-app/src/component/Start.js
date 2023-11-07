@@ -77,8 +77,8 @@ const Start = () => {
                         <button disabled={!uploadedFileName}> Results </button>
                 </NavLink>
             </div>
-            <div className="results">
-                {result && <Form props={data} />}
+            <div className="form">
+                {result && <Form props={data} navigate={navigate}/>}
             </div>
         </div>
         </div>
