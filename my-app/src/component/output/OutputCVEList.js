@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import MenuBar from "../MenuBar";
 import { NavLink, useLocation, useNavigate } from "react-router-dom"
-import "./Output.css"
+import "../styles/Output.css"
 
 function OutputCVEList() {
 
@@ -53,7 +53,8 @@ function OutputCVEList() {
                                         <div class="cve-content">
                                             <h4> Description </h4>  
                                             <p>{CVEItem.description}</p>
-
+                                            <p> VPR - {CVEItem.vpr !== "" ? CVEItem.vpr : "n/a"}</p>
+                                            <p> CVSS - {CVEItem.cvss !== "" ? CVEItem.cvss : "n/a"}</p>
                                             <h4> Solution </h4>  
                                             <p>{CVEItem.solution}</p>
                                         </div>          
