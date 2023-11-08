@@ -67,7 +67,7 @@ export class FormSystems extends Component {
 
     return (<div>
       <form className="form">
-        <label>Please specify main business systems, then click Add:</label>
+        <label>Specify main business systems, then click Add:</label>
         <select
           value={selectedSystem}
           onChange={this.handleChange}
@@ -80,7 +80,7 @@ export class FormSystems extends Component {
             </option>
           ))}
         </select>
-        <input id="input"  onChange={this.handleChange} />
+        <input id="input"  className="input-box" onChange={this.handleChange} />
         <button
           type="button"
           onClick={this.handleAddSystem}
