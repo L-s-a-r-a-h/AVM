@@ -35,7 +35,7 @@ export class FormAddresses extends Component {
       <div className="form-container">
 
 
-        <p>Please enter the ip addressess ued by the system</p>
+        <p>Please select the system used for the IP address</p>
       
         <form id="form">
           {hosts && hosts.length > 0 ? (

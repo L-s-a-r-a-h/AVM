@@ -66,8 +66,10 @@ export class FormSystems extends Component {
     const { selectedSystem, systemsList, systemOptions } = this.state;
 
     return (<div>
+       <div className="form-container">
+        <h3 className="form-heading">Form</h3>
       <form className="form">
-        <label>Please specify main business systems, then click Add:</label>
+        <label>Specify main business systems, then click Add:</label>
         <select
           value={selectedSystem}
           onChange={this.handleChange}
@@ -80,7 +82,7 @@ export class FormSystems extends Component {
             </option>
           ))}
         </select>
-        <input id="input"  onChange={this.handleChange} />
+        <input id="input"  className="input-box" onChange={this.handleChange} />
         <button
           type="button"
           onClick={this.handleAddSystem}
@@ -121,6 +123,8 @@ export class FormSystems extends Component {
         Next
       </button>
     </div>
+    </div>
+     
     );
   }
 }
