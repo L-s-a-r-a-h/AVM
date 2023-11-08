@@ -66,6 +66,8 @@ export class FormSystems extends Component {
     const { selectedSystem, systemsList, systemOptions } = this.state;
 
     return (<div>
+       <div className="form-container">
+        <h3 className="form-heading">Form</h3>
       <form className="form">
         <label>Specify main business systems, then click Add:</label>
         <select
@@ -121,6 +123,8 @@ export class FormSystems extends Component {
         Next
       </button>
     </div>
+    </div>
+     
     );
   }
 }
