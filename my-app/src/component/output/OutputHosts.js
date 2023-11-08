@@ -4,7 +4,7 @@ import MenuBar from "../MenuBar";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AiFillInfoCircle } from "react-icons/ai";
 import HSBar from "react-horizontal-stacked-bar-chart";
-import "./Output.css"
+import "../styles/Output.css"
 import OutputCVEList from "./OutputCVEList";
 
 function OutputHosts() {
@@ -47,19 +47,35 @@ function OutputHosts() {
                 })
             }
             if (host !== undefined) {
+                // Check if "data" has VPR
+                let cvss;
+                let priority_score;
+                if (data.CVSSv3 !== "") {
+                    // Use CVSSv3
+                    priority_score = parseFloat(data.CVSSv3).toFixed(2);
+                    cvss = parseFloat(data.CVSSv3).toFixed(1);
+                }
+                else {
+                    // Use CVSSv2
+                    priority_score = parseFloat(data.CVSSv2).toFixed(2);
+                    cvss = parseFloat(data.CVSSv2).toFixed(1);
+                }
+
+                // Process "data"
                 let cve = {
                     cve_id: data.CVE,
                     name: data.Name,
                     description : data.Description,
                     severity: data.Risk,
                     severity_num: Risks.get(data.Risk),
-                    Priority_Score: parseFloat(data.CVSS).toFixed(2),
-                    cvss : data.CVSS,
+                    Priority_Score: parseFloat(priority_score).toFixed(2),
+                    cvss : cvss,
                     vpr : data.VPR,
                     solution: data.Solution
                 }
                 
-                cve.Priority_Score = parseFloat(adjust_priority(cve, host, form_data)).toFixed(2);
+                // Prioritize Vulnerability then add to host
+                cve.Priority_Score = parseFloat(adjust_priority(cve, host, cve.vpr, form_data)).toFixed(2);
                 host.cve_data.push(cve);
                 host.total_prio = host.total_prio + parseFloat(cve.Priority_Score);        
                 switch(data.Risk) { 
@@ -76,8 +92,9 @@ function OutputHosts() {
                         host.low = host.low + 1;
                         break;
                 }
+                // Sort cve_data by priority score
                 host.cve_data.sort((a,b) => {
-                    return  b.severity_num - a.severity_num || b.Priority_Score - a.Priority_Score;
+                    return b.Priority_Score - a.Priority_Score;
                 })
             }
             hosts.sort((a, b) => {
@@ -89,13 +106,18 @@ function OutputHosts() {
         setHosts(hosts);
     }, []);
 
-    const adjust_priority = (cve, host, form_data) => {
+    const adjust_priority = (cve, host, vpr, form_data) => {
         let new_score = parseFloat(cve.Priority_Score);
 
         for (let system of form_data) {
             for (let sys_host of system.hosts) {
                 if (sys_host === host.host_name) {
-                    new_score = parseFloat(new_score) + parseFloat(system.systemRating);
+                    if (vpr !== "") {
+                        new_score = parseFloat(new_score) + parseFloat(Math.pow((system.systemRating * 0.5), 2) + parseFloat(vpr))
+                    }
+                    else {
+                        new_score = parseFloat(new_score) + parseFloat(Math.pow((system.systemRating * 0.5), 2) + parseFloat(cve.cvss));
+                    }
                     return parseFloat(new_score);
                 }
             }

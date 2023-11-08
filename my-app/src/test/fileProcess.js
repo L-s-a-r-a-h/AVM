@@ -24,8 +24,13 @@ function checkFile(data) {
         for (let x in data) {
             // var keys = Object.keys(data[x]);
             Object.keys(data[x]).forEach((key) => {
-                var replacedKey = key.replace("CVSS v2.0 Base Score", "CVSS");
+                var replacedKey = key.replace("CVSS v2.0 Base Score", "CVSSv2");
                 if (key === "CVSS v2.0 Base Score") {
+                    data[x][replacedKey] = data[x][key];
+                    delete data[x][key];
+                }
+                var replacedKey = key.replace("CVSS v3.0 Base Score", "CVSSv3");
+                if (key === "CVSS v3.0 Base Score") {
                     data[x][replacedKey] = data[x][key];
                     delete data[x][key];
                 }
